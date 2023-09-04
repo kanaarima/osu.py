@@ -106,9 +106,7 @@ class BanchoClient:
 
     @property
     def status(self) -> Status:
-        if not self.player:
-            return Status()
-        return self.player.status
+        return Status() if not self.player else self.player.status
 
     @property
     def idle_time(self) -> float:
@@ -131,9 +129,7 @@ class BanchoClient:
             interval *= 1 + self.idle_time / 10
             interval *= 1 + self.ping_count
 
-        interval = min(self.max_idletime, max(self.min_idletime, interval))
-
-        return interval
+        return min(self.max_idletime, max(self.min_idletime, interval))
 
     def run(self):
         self.connect()
@@ -273,7 +269,7 @@ class BanchoClient:
         stream.u8(self.player.status.action.value)
         stream.string(self.player.status.text)
         stream.string(self.player.status.checksum)
-        stream.u32(sum([mod.value for mod in self.player.status.mods]))
+        stream.u32(sum(mod.value for mod in self.player.status.mods))
         stream.u8(self.player.mode.value)
         stream.s32(self.player.status.beatmap_id)
 

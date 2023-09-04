@@ -31,16 +31,10 @@ class Players(Set[Player]):
             return super().remove(player)
 
     def by_id(self, id: int) -> Optional[Player]:
-        for p in self:
-            if p.id == id:
-                return p
-        return None
+        return next((p for p in self if p.id == id), None)
 
     def by_name(self, name: str) -> Optional[Player]:
-        for p in self:
-            if p.name == name:
-                return p
-        return None
+        return next((p for p in self if p.name == name), None)
 
     def load(self):
         # Split players into chunks of 255
@@ -73,7 +67,4 @@ class Channels(Set[Channel]):
             return super().remove(channel)
 
     def get(self, name: str) -> Optional[Channel]:
-        for c in self:
-            if c.name == name:
-                return c
-        return None
+        return next((c for c in self if c.name == name), None)

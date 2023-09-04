@@ -105,7 +105,11 @@ class ClientInfo:
 
     @classmethod
     def get_file_hash(cls, updates: dict) -> Optional[str]:
-        for file in updates:
-            if file["filename"] == "osu!.exe":
-                return file["file_hash"]
-        return None
+        return next(
+            (
+                file["file_hash"]
+                for file in updates
+                if file["filename"] == "osu!.exe"
+            ),
+            None,
+        )
