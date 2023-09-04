@@ -474,7 +474,7 @@ def channel_revoked(stream: StreamIn, game: Game):
 
 @Packets.register(ServerPackets.BEATMAP_INFO_REPLY)
 def beatmapinfo_reply(stream: StreamIn, game: Game):
-    beatmaps = [BeatmapInfo.decode(stream) for beatmap in range(stream.s32())]
+    beatmaps = [BeatmapInfo.decode(stream) for _ in range(stream.s32())]
 
     game.events.call(ServerPackets.BEATMAP_INFO_REPLY, beatmaps)
 

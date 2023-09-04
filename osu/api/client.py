@@ -114,7 +114,7 @@ class WebAPI:
         My guess is that it checks, if somebody is already online with this account.
         """  # TODO
 
-        response = self.session.post(
+        return self.session.post(
             f"{self.url}/web/osu-session.php",
             files={
                 "u": self.game.username,
@@ -122,8 +122,6 @@ class WebAPI:
                 "action": "check",
             },
         )
-
-        return response
 
     def get_backgrounds(self) -> Optional[dict]:
         """This will perform a request on `/web/osu-getseasonal.php`."""

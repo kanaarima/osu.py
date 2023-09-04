@@ -202,7 +202,7 @@ class Mods(Enum):
 
     @classmethod
     def pack(cls, values: List[Enum]):
-        return sum([mod.value for mod in values])
+        return sum(mod.value for mod in values)
 
     @classmethod
     def check_active(cls, values: int, mod: int):
@@ -224,7 +224,7 @@ class Privileges(Enum):
 
     @classmethod
     def pack(cls, values: List[Enum]):
-        return sum([p.value for p in values])
+        return sum(p.value for p in values)
 
     @classmethod
     def check_active(cls, values: int, p: int):
@@ -245,7 +245,7 @@ class ButtonState(Enum):
 
     @classmethod
     def pack(cls, values: List[Enum]):
-        return sum([b.value for b in values])
+        return sum(b.value for b in values)
 
     @classmethod
     def check_active(cls, values: int, b: int):
